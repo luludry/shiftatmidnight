@@ -1,0 +1,10 @@
+{
+  "source": "reference-site-layout",
+  "capturedViewport": { "width": 1440, "height": 900 },
+  "header": { "height": 72, "contentMaxWidth": 1260 },
+  "shell": { "maxWidth": 1392, "gutter": 24, "mainWidthApprox": 1038, "sidebarWidth": 296, "columnGap": 32 },
+  "home": { "heroTitleY": 136, "mediaWidth": 760, "mediaRatio": "16/9", "sidebarY": 136 },
+  "list": { "breadcrumbY": 118, "coverRatio": "16/7", "titleSize": 52, "cardColumns": 2 },
+  "detail": { "breadcrumbY": 118, "titleSize": 52, "bodyMeasure": 900, "sidebarStickyTop": 92 },
+  "breakpoints": [1200, 1024, 768, 390]
+}
