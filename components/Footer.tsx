@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Locale } from '@/lib/i18n'
 import { withLocale } from '@/lib/i18n'
@@ -12,21 +13,29 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="footer-note">{data.hero.eyebrow}</div>
       <div className="footer-grid">
         <div className="footer-brand">
-          <span className="brand-mark" aria-hidden="true">SM</span>
           <div>
-            <strong>{data.footer.aboutTitle}</strong>
+            <div className="footer-brand-title">
+              <Image
+                alt="Shift At Midnight"
+                className="rounded-md"
+                height={36}
+                src="/logo.png"
+                width={36}
+              />
+              <strong>{data.footer.aboutTitle}</strong>
+            </div>
             <p>{data.meta.description}</p>
           </div>
         </div>
         <div>
-          <h4>{zh ? '官方链接' : 'Official Links'}</h4>
-          <span className="pending-link">{data.footer.playGame} · {data.footer.pending}</span>
-          <span className="pending-link">{data.footer.officialDiscord} · {data.footer.pending}</span>
+          <h4>{zh ? '浏览资料站' : 'Explore'}</h4>
+          <Link href={withLocale('/doppelgangers', locale)}>{zh ? '替身怪图鉴' : 'Doppelgangers'}</Link>
+          <Link href={withLocale('/guides', locale)}>{zh ? '攻略' : 'Guides'}</Link>
+          <Link href={withLocale('/guides/all-endings', locale)}>{zh ? '全部结局' : 'Endings'}</Link>
         </div>
         <div>
-          <h4>{zh ? '法律信息' : 'Legal'}</h4>
-          <Link href={withLocale('/privacy-policy', locale)}>{zh ? '隐私政策' : 'Privacy Policy'}</Link>
-          <Link href={withLocale('/terms-of-service', locale)}>{zh ? '服务条款' : 'Terms of Service'}</Link>
+          <h4>{zh ? '官方链接' : 'Official Link'}</h4>
+          <a href="https://store.steampowered.com/app/3722330/Shift_At_Midnight/" target="_blank" rel="noreferrer">{data.footer.playGame}</a>
         </div>
       </div>
       <div className="copyright">© 2026 Shift At Midnight Wiki. {data.hero.eyebrow}.</div>

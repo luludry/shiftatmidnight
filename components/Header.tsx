@@ -1,9 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import type { Locale } from '@/lib/i18n'
 import { copy, withLocale } from '@/lib/i18n'
+import { isNavigationCurrent, navigationLabel, primaryNavigation } from '@/lib/navigation'
 import { ThemeToggle } from './ThemeToggle'
 
 export function Header({ locale, pathname }: { locale: Locale; pathname: string }) {
@@ -13,24 +15,31 @@ export function Header({ locale, pathname }: { locale: Locale; pathname: string 
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
   }, [locale])
-  const links = [
-    ['/characters', t.nav[0]],
-    ['/doppelgangers', t.nav[1]],
-    ['/walkthrough', t.nav[2]],
-    ['/doppelgangers/the-dentist', t.nav[3]],
-    ['/endings', t.nav[4]],
-    ['/guides', t.nav[5]],
-  ]
-
   return (
     <header className="site-header">
       <div className="header-inner">
         <Link href={withLocale('/', locale)} className="brand" aria-label={t.brand}>
-          <span className="brand-mark" aria-hidden="true">SM</span>
-          <span>{t.brand}</span>
+          <Image
+            alt="Shift At Midnight"
+            className="rounded-md"
+            height={36}
+            src="/logo.png"
+            width={36}
+          />
+          <span className="brand-title">{t.brand}</span>
         </Link>
         <nav className={open ? 'top-nav open' : 'top-nav'} aria-label="Primary navigation">
-          {links.map(([href, label]) => <Link key={href} href={withLocale(href, locale)}>{label}</Link>)}
+          {primaryNavigation.map((item) => (
+            <Link
+              aria-current={isNavigationCurrent(pathname, item.href) ? 'page' : undefined}
+              className={isNavigationCurrent(pathname, item.href) ? 'current' : undefined}
+              key={item.href}
+              href={withLocale(item.href, locale)}
+              onClick={() => setOpen(false)}
+            >
+              {navigationLabel(item, locale)}
+            </Link>
+          ))}
         </nav>
         <div className="header-tools">
           <Link className="language-switch" href={`${pathname}?lang=${locale === 'en' ? 'zh' : 'en'}`}>{locale === 'en' ? '中' : 'EN'}</Link>

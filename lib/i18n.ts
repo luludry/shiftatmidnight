@@ -10,11 +10,9 @@ export function withLocale(path: string, locale: Locale) {
 
 export const copy = {
   en: {
-    brand: 'SHIFT AT MIDNIGHT',
-    nav: ['Characters', 'Doppelgangers', 'Walkthrough', 'Monsters', 'Endings', 'Guides'],
+    brand: 'Shift At Midnight',
   },
   zh: {
-    brand: 'SHIFT AT MIDNIGHT',
-    nav: ['角色', '替身怪', '完整流程', '怪物', '结局', '攻略'],
+    brand: 'Shift At Midnight',
   },
 } as const

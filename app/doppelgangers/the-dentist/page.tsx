@@ -25,7 +25,7 @@ export default async function DentistPage({ searchParams }: { searchParams: Prom
     : (await import('@/content/en/the-dentist.mdx')).default
 
   return (
-    <Shell locale={locale} pathname="/doppelgangers/the-dentist" active="Doppelgangers">
+    <Shell locale={locale} pathname="/doppelgangers/the-dentist">
       <article className="wiki-article detail-page">
         <Breadcrumbs locale={locale} detail={zh ? '牙医' : 'The Dentist'} />
         <h1>{zh ? 'Shift at Midnight 牙医生存攻略' : 'How to Survive The Dentist in Shift at Midnight'}</h1>

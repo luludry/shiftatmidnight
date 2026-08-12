@@ -19,20 +19,23 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
   const locale = getLocale((await searchParams).lang)
   const data = siteData[locale]
   const zh = locale === 'zh'
-  const cardLinks = ['/guides', '/doppelgangers', '/guides', '/endings']
+  const cardLinks = ['/guides', '/doppelgangers', '/guides/crossplay', '/guides/all-endings']
 
   return (
-    <Shell locale={locale} pathname="/" active="Getting Started">
+    <Shell locale={locale} pathname="/">
       <section className="home-hero">
         <div className="title-row">
           <h1>{data.hero.title}</h1>
           <span>{data.hero.eyebrow}</span>
         </div>
 
-        <div className="video-frame trailer-placeholder" aria-label={data.hero.videoLabel}>
-          <div className="trailer-monogram" aria-hidden="true">SM</div>
-          <strong className="video-label">{data.hero.videoLabel}</strong>
-          <small>{zh ? '链接待确认' : 'Link pending confirmation'}</small>
+        <div className="video-frame" aria-label={data.hero.videoLabel}>
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/neUteAK8FUo?rel=0"
+            title={data.hero.videoLabel}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
 
         <p className="hero-copy">{data.hero.description}</p>
@@ -69,14 +72,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
           <div><dt>{zh ? '剧情夜班' : 'Story'}</dt><dd>{data.hero.stats[1]}</dd></div>
           <div><dt>{zh ? '合作人数' : 'Co-op'}</dt><dd>{data.hero.stats[2]}</dd></div>
         </dl>
-      </section>
-
-      <section className="home-section codes-section">
-        <p className="eyebrow">{data.codes.eyebrow}</p>
-        <div className="codes-panel">
-          <div><h2>{data.codes.title}</h2><p>{data.codes.empty}</p></div>
-          <span>{data.codes.empty}</span>
-        </div>
       </section>
 
       <section className="home-section bottom-cta">
